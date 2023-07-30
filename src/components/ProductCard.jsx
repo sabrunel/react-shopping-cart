@@ -5,11 +5,30 @@ import { useContext } from "react";
 export default function ProductCard({ product }) {
     const { setCart } = useContext(AppContext);
 
-    function addToCart(product) {
+    function addToCart(cartItem) {
         setCart((currentCart) => {
-            return [...currentCart,
-                product
-            ]
+            let itemInCart = currentCart.find((currentItem) => currentItem.id === cartItem.id);
+
+            if (itemInCart) {
+                itemInCart.quantity++
+
+                return (
+                    currentCart.map((currentItem) => {
+                        if (currentItem.id === itemInCart.id) {
+                            return itemInCart
+                        }
+
+                        return currentItem;
+                    })
+                ) 
+            } else {
+                return [...currentCart,
+                    {
+                        ...cartItem,
+                        quantity: 1
+                    }
+                ]
+            }
         })
     }
 
@@ -28,7 +47,13 @@ export default function ProductCard({ product }) {
                     <p> {product.rating.count} </p>
                 </div>
             </div>
-            <button onClick={() => addToCart(product)}>Add to cart</button>
+            <button onClick={() => addToCart(
+                {
+                    id: product.id,
+                    title: product.title,
+                    price: product.price
+                }
+            )}>Add to cart</button>
         </article>
     )
 }
