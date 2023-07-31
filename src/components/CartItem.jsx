@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
 
-export default function CartItem({ cartItem }) {
+export default function CartItem({ product }) {
 
     return (
         <article>
-            <h2> {cartItem.title} </h2>
-            <p> {cartItem.price} </p>
-            <p> {cartItem.quantity} </p>
+            <img src={product.image} alt="" />
+            <div>            
+                <h2> {product.title} </h2>
+                <p> {product.price * product.quantity}$ </p>
+                <p> {product.quantity} </p>
+            </div>
         </article>
     )
 }
 
 CartItem.propTypes = {
-    cartItem: PropTypes.object,
+    product: PropTypes.object,
   };

@@ -47,13 +47,7 @@ export default function ProductCard({ product }) {
                     <p> {product.rating.count} </p>
                 </div>
             </div>
-            <button onClick={() => addToCart(
-                {
-                    id: product.id,
-                    title: product.title,
-                    price: product.price
-                }
-            )}>Add to cart</button>
+            <button onClick={() => addToCart(product)}>Add to cart</button>
         </article>
     )
 }

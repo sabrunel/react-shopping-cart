@@ -6,20 +6,32 @@ import CartItem from "../components/CartItem";
 export default function Cart() {
     const { cart } = useContext(AppContext);
 
+    function computeTotalPrice(products) {
+        return (
+            products.reduce((sum, product) => {
+                return sum + (product.quantity * product.price);
+            }, 0)
+        )
+    }
+    
     return (
         <main>
             <h1>Cart</h1>
-            <div>
+            <section>
                 { cart.length === 0 && <p>There are no items in your cart </p>}
                 { cart.map((cartItem) => {
                     return  (
                         <CartItem 
                             key={cartItem.id}
-                            cartItem = {cartItem}
+                            product={cartItem}
                         />
                     )
                 })}
-            </div>
+            </section>
+            <section>
+                <h2>Total</h2>
+                <p>{computeTotalPrice(cart).toFixed(2)}$</p>
+            </section>
             <Link to="/store">
                 <span>&#8592;</span> Continue shopping
             </Link>
