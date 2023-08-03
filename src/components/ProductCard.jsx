@@ -33,21 +33,22 @@ export default function ProductCard({ product }) {
     }
 
     return (
-        <article>
-            <picture>
-                <img src={product.image} alt="" />
-            </picture>
-            <div>
-            <p> {product.category} </p>
-                <h2> {product.title} </h2>
-                <p> {product.description} </p>
-                <p> {product.price}$</p>
-                <div>
-                    <p> {product.rating.rate} </p>
-                    <p> {product.rating.count} </p>
+        <article className="flex flex-col justify-between">
+            <div className="h-96 overflow-hidden border-solid border-slate-200 border mb-6 rounded-md">
+                <div className="h-full w-full flex justify-center items-center group">
+                    <picture className="w-60 mx-auto flex justify-center items-center">
+                        <img className="max-h-60 group-hover:scale-110 transition ease-in-out duration-300" src={product.image} alt="" />
+                    </picture>
                 </div>
             </div>
-            <button onClick={() => addToCart(product)}>Add to cart</button>
+            <div className="flex flex-col justify-between flex-grow">
+                <p className="uppercase mb-2 text-slate-600"> {product.category} </p>
+                <h2 className="font-semibold mb-2"> {product.title} </h2>
+                <div className="flex justify-between items-center mt-2">
+                    <p className="text-xl font-semibold"> ${product.price}</p>
+                    <button className="px-4 py-2 no-underline bg-slate-800 hover:bg-black text-white rounded-md" onClick={() => addToCart(product)}>Add to cart</button>
+                </div>
+            </div>
         </article>
     )
 }

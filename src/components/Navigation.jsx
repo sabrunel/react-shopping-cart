@@ -10,10 +10,10 @@ export default function Navigation({ cart }) {
     }, [cart])
 
     return (
-        <header>
-            <NavLink to="/"> Logo </NavLink>
+        <header className="px-32 py-8 flex justify-between items-center">
+            <NavLink to="/" className="text-2xl tracking-wide font-semibold"> COMFORTZONE </NavLink>
             <nav>
-                <ul>
+                <ul className="list-none flex gap-x-12">
                     <li>
                         <NavLink to="/"> Home </NavLink>
                     </li>

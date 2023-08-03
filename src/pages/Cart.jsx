@@ -6,6 +6,8 @@ import CartItem from "../components/CartItem";
 export default function Cart() {
     const { cart } = useContext(AppContext);
 
+    const SHIPPING = 10;
+
     function computeTotalPrice(products) {
         return (
             products.reduce((sum, product) => {
@@ -15,9 +17,12 @@ export default function Cart() {
     }
     
     return (
-        <main>
-            <h1>Cart</h1>
-            <section>
+        <main className="max-w-2xl px-32 py-8">
+            <h1 className="text-4xl font-bold mb-8">Cart</h1>
+            <Link to="/store">
+                <span>&#8592;</span> Continue shopping
+            </Link>
+            <section className="py-10">
                 { cart.length === 0 && <p>There are no items in your cart </p>}
                 { cart.map((cartItem) => {
                     return  (
@@ -28,13 +33,17 @@ export default function Cart() {
                     )
                 })}
             </section>
-            <section>
-                <h2>Total</h2>
-                <p>{computeTotalPrice(cart).toFixed(2)}$</p>
-            </section>
-            <Link to="/store">
-                <span>&#8592;</span> Continue shopping
-            </Link>
+            {cart.length > 0 && 
+                <section>
+                    <div className="flex justify-between items-center">
+                        <p>Shipping</p>
+                        <p className="font-semibold">${SHIPPING}</p>
+                    </div>
+                    <button className="w-full inline-block py-3 my-2 bg-slate-800 hover:bg-black text-white text-xl rounded-md">
+                        ORDER - ${(computeTotalPrice(cart) + SHIPPING).toFixed(2)}
+                    </button>
+                </section>
+            }
         </main>
     )
 }
