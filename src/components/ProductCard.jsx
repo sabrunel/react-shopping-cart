@@ -1,36 +1,10 @@
 import PropTypes from 'prop-types';
 import { AppContext } from '../App';
 import { useContext } from "react";
+import { Link } from 'react-router-dom';
 
 export default function ProductCard({ product }) {
-    const { setCart } = useContext(AppContext);
-
-    function addToCart(cartItem) {
-        setCart((currentCart) => {
-            let itemInCart = currentCart.find((currentItem) => currentItem.id === cartItem.id);
-
-            if (itemInCart) {
-                itemInCart.quantity++
-
-                return (
-                    currentCart.map((currentItem) => {
-                        if (currentItem.id === itemInCart.id) {
-                            return itemInCart
-                        }
-
-                        return currentItem;
-                    })
-                ) 
-            } else {
-                return [...currentCart,
-                    {
-                        ...cartItem,
-                        quantity: 1
-                    }
-                ]
-            }
-        })
-    }
+    const { addToCartHandler } = useContext(AppContext);
 
     return (
         <article className="flex flex-col justify-between">
@@ -43,10 +17,12 @@ export default function ProductCard({ product }) {
             </div>
             <div className="flex flex-col justify-between flex-grow">
                 <p className="uppercase mb-2 text-slate-600"> {product.category} </p>
-                <h2 className="font-semibold mb-2"> {product.title} </h2>
+                <Link to={`/product/${product.id}`}>
+                    <h2 className="font-semibold mb-2 hover:underline"> {product.title} </h2>
+                </Link>
                 <div className="flex justify-between items-center mt-2">
                     <p className="text-xl font-semibold"> ${product.price}</p>
-                    <button className="px-4 py-2 no-underline bg-slate-800 hover:bg-black text-white rounded-md" onClick={() => addToCart(product)}>Add to cart</button>
+                    <button className="px-4 py-2 no-underline bg-slate-800 hover:bg-black text-white rounded-md" onClick={() => addToCartHandler(product)}>Add to cart</button>
                 </div>
             </div>
         </article>

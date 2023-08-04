@@ -1,11 +1,13 @@
+import { AppContext } from "../App";
 import ProductCard from "../components/ProductCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 export default function Store() {
-    const [products, setProducts] = useState(null);
+    const [store, setStore] = useState(null);
     const [category, setCategory] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const { updateProductList } = useContext(AppContext);
 
     useEffect(() => {
         setIsLoading(true);
@@ -17,12 +19,16 @@ export default function Store() {
                 return res.json();
               })
             .then(json => json.filter((item) => item.category !== "electronics"))
-            .then(json => setProducts(json))
+            .then(json => setStore(json))
             .catch((error) => setError(error))
             .finally(() => setIsLoading(false))
     }, []);
 
-    const displayProduct = category ? products.filter((product) => product.category === category) : products;
+    useEffect(() => {
+        updateProductList(store);
+    },  [store, updateProductList])
+
+    const displayProduct = category ? store.filter((product) => product.category === category) : store;
 
     return (
         <main className="px-32 py-8">
@@ -34,7 +40,7 @@ export default function Store() {
                 <button className="px-6 py-3 no-underline border-solid border border-slate-200 bg-white hover:bg-slate-50 text-black hover:text-slate-700 rounded-md" onClick={() => setCategory("jewelery")}>Jewelery</button>
             </div>
             {isLoading && <p>Loading...</p>}
-            {products && 
+            {store && 
                 <section className="max-w-6xl grid grid-cols-3 gap-x-10 gap-y-10 py-8 mx-auto my-8">
                     {
                         displayProduct.map((product) => {

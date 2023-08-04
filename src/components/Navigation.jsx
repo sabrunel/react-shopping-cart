@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
-export default function Navigation({ cart }) {
+export default function Navigation({ cart, showCart }) {
     const [cartSize, setCartSize] = useState(0);
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function Navigation({ cart }) {
                         <NavLink to="/store"> Store </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/cart"> Cart ({cartSize})</NavLink>
+                        <button onClick={() => showCart(true)}>Cart ({cartSize})</button>
                     </li>
                 </ul>
             </nav>
@@ -32,4 +32,5 @@ export default function Navigation({ cart }) {
 
 Navigation.propTypes = {
     cart: PropTypes.array,
+    showCart: PropTypes.func
   };

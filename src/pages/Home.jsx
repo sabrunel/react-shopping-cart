@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
     return (
-        <main className="mx-32 my-6 px-32 py-10 h-[700px] flex justify-between bg-cover rounded-md"  style={{backgroundImage: `url(${hero})`}}>
+        <main className="px-32 py-10 flex flex-grow justify-between bg-cover"  style={{backgroundImage: `url(${hero})`}}>
             <section className="py-12" >
                 <h2 className="text-4xl font-light uppercase leading-relaxed"> Unwind in style </h2>
                 <h1 className="text-7xl font-bold uppercase mb-10"> Casual Elegance Redefined </h1>

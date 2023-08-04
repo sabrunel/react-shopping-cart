@@ -2,7 +2,7 @@ import App from '../App.jsx';
 import Home from '../pages/Home.jsx';
 import Store from '../pages/Store.jsx';
 import Error from '../pages/Error.jsx';
-import Cart from '../pages/Cart.jsx';
+import Product from '../pages/Product.jsx';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 export default function Router() {
@@ -20,9 +20,10 @@ export default function Router() {
               path: "store",
               element: <Store />,
             },
+  
             {
-              path: "cart",
-              element: <Cart />,
+              path: "product/:id",
+              element: <Product />,
             },
           ]
         },

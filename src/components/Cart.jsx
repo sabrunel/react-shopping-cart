@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
 import { AppContext } from '../App';
 import { useContext } from "react";
-import CartItem from "../components/CartItem";
+import CartItem from "./CartItem";
 
 export default function Cart() {
-    const { cart } = useContext(AppContext);
+    const { cart, showCart, setShowCart } = useContext(AppContext);
 
     const SHIPPING = 10;
 
@@ -17,11 +16,9 @@ export default function Cart() {
     }
     
     return (
-        <main className="max-w-2xl px-32 py-8">
+        <aside className={`${showCart ? "right-0" : "-right-full"} max-w-[30vw] h-full overflow-scroll fixed py-8 px-6 top-0 bg-white shadow-lg transition-all duration-300 z-50`}>
             <h1 className="text-4xl font-bold mb-8">Cart</h1>
-            <Link to="/store">
-                <span>&#8592;</span> Continue shopping
-            </Link>
+            <button onClick={() => setShowCart(false)}><span>&#8592;</span></button>
             <section className="py-10">
                 { cart.length === 0 && <p>There are no items in your cart </p>}
                 { cart.map((cartItem) => {
@@ -44,6 +41,6 @@ export default function Cart() {
                     </button>
                 </section>
             }
-        </main>
+        </aside>
     )
 }
