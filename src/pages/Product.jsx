@@ -12,8 +12,8 @@ export default function Product() {
     })
 
     return (
-        <main className="flex-grow flex items-center">
-            <section className="max-w-3xl mx-auto flex items-center gap-8">
+        <main className="flex-grow flex items-center px-8">
+            <section className="max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-8">
                     <img className="max-w-[300px]" src={product.image} alt="" />
                     <div className="flex flex-col gap-8">
                         <h2 className="text-xl font-semibold mb-2">{product.title}</h2>

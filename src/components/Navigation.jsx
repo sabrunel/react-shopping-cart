@@ -10,18 +10,15 @@ export default function Navigation({ cart, showCart }) {
     }, [cart])
 
     return (
-        <header className="px-32 py-8 flex justify-between items-center">
-            <NavLink to="/" className="text-2xl tracking-wide font-semibold"> COMFORTZONE </NavLink>
+        <header className="container mx-auto px-8 py-8 flex justify-between items-center">
+            <NavLink to="/" className="text-xl tracking-wide font-light inline-block"> COMFORT<span className="font-semibold">ZONE</span> </NavLink>
             <nav>
                 <ul className="list-none flex gap-x-12">
-                    <li>
-                        <NavLink to="/"> Home </NavLink>
-                    </li>
                     <li>
                         <NavLink to="/store"> Store </NavLink>
                     </li>
                     <li>
-                        <button onClick={() => showCart(true)}>Cart ({cartSize})</button>
+                        <button className="relative" onClick={() => showCart(true)}>Cart <span className="absolute left-8 bottom-4 flex justify-center items-center bg-black text-white text-xs w-5 h-5 rounded-full">{cartSize}</span></button>
                     </li>
                 </ul>
             </nav>

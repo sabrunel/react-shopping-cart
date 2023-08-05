@@ -31,17 +31,17 @@ export default function Store() {
     const displayProduct = category ? store.filter((product) => product.category === category) : store;
 
     return (
-        <main className="px-32 py-8">
+        <main className="container mx-auto px-8 py-8">
             <h1 className="text-4xl font-bold mb-8">Browse our collection</h1>
-            <div className="flex gap-x-10">
-                <button className="px-6 py-3 no-underline border-solid border border-slate-200 bg-white hover:bg-slate-50 text-black hover:text-slate-700 rounded-md" onClick={() => setCategory("")}>All</button>
-                <button className="px-6 py-3 no-underline border-solid border border-slate-200 bg-white hover:bg-slate-50 text-black hover:text-slate-700 rounded-md" onClick={() => setCategory("women's clothing")}>Women</button>
-                <button className="px-6 py-3 no-underline border-solid border border-slate-200 bg-white hover:bg-slate-50 text-black hover:text-slate-700 rounded-md" onClick={() => setCategory("men's clothing")}>Men</button>
-                <button className="px-6 py-3 no-underline border-solid border border-slate-200 bg-white hover:bg-slate-50 text-black hover:text-slate-700 rounded-md" onClick={() => setCategory("jewelery")}>Jewelery</button>
+            <div className="flex justify-around md:justify-center md:gap-x-10 lg:justify-start">
+                <button className="px-4 py-2 no-underline border-solid border border-slate-200 bg-white hover:bg-slate-50 text-black hover:text-slate-700 rounded-md" onClick={() => setCategory("")}>All</button>
+                <button className="px-4 py-2 no-underline border-solid border border-slate-200 bg-white hover:bg-slate-50 text-black hover:text-slate-700 rounded-md" onClick={() => setCategory("women's clothing")}>Women</button>
+                <button className="px-4 py-2 no-underline border-solid border border-slate-200 bg-white hover:bg-slate-50 text-black hover:text-slate-700 rounded-md" onClick={() => setCategory("men's clothing")}>Men</button>
+                <button className="px-4 py-2 no-underline border-solid border border-slate-200 bg-white hover:bg-slate-50 text-black hover:text-slate-700 rounded-md" onClick={() => setCategory("jewelery")}>Jewelery</button>
             </div>
             {isLoading && <p>Loading...</p>}
             {store && 
-                <section className="max-w-6xl grid grid-cols-3 gap-x-10 gap-y-10 py-8 mx-auto my-8">
+                <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-10 py-8 mx-auto my-8">
                     {
                         displayProduct.map((product) => {
                             return <ProductCard key={product.id} product={product}/>
