@@ -42,7 +42,7 @@ export default function App() {
 }
 
   return (
-    <div className="font-primary flex flex-col min-h-screen">
+    <div className={`${showCart ? "pointer-events-none" : "pointer-events-auto"} font-primary flex flex-col min-h-screen`}>
       <Navigation cart={cart} showCart={setShowCart}/>
       <AppContext.Provider value={{productList, updateProductList, cart, addToCartHandler, showCart, setShowCart}}>
         {showCart && <Cart />}

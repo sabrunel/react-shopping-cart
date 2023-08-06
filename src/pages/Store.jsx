@@ -39,7 +39,7 @@ export default function Store() {
                 <button className="px-4 py-2 no-underline border-solid border border-slate-200 bg-white hover:bg-slate-50 text-black hover:text-slate-700 rounded-md" onClick={() => setCategory("men's clothing")}>Men</button>
                 <button className="px-4 py-2 no-underline border-solid border border-slate-200 bg-white hover:bg-slate-50 text-black hover:text-slate-700 rounded-md" onClick={() => setCategory("jewelery")}>Jewelery</button>
             </div>
-            {isLoading && <p>Loading...</p>}
+            {isLoading && <p className="text-xl text-center">Loading products...</p>}
             {store && 
                 <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-10 py-8 mx-auto my-8">
                     {
